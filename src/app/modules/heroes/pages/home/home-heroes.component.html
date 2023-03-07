@@ -1,18 +1,38 @@
-<mat-toolbar color="primary">
-  <div>
-    <button mat-button [routerLink]="'/heroes'" (click)="checkSubMenu('home')"
-      [ngClass]="{'selected-border-menu': optionSubMenu == 'home'}">Home</button>
-    <button mat-button [routerLink]="'/heroes/todos'" (click)="checkSubMenu('todos')"
-      [ngClass]="{'selected-border-menu': optionSubMenu == 'todos'}">Todos</button>
-    <button mat-button [routerLink]="'/heroes/alta'" (click)="checkSubMenu('alta')"
-      [ngClass]="{'selected-border-menu': optionSubMenu == 'alta'}">Alta</button>
-  </div>
-</mat-toolbar>
+<mat-drawer-container class="container-sidenav" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <mat-toolbar color="primary">
+      <div class="botones">
+        <button mat-button [routerLink]="'/heroes'" (click)="checkSubMenu('home')"
+          [ngClass]="{'selected-border-menu': optionSubMenu == 'home'}">Home</button>
+        <button mat-button [routerLink]="'/heroes/todos'" (click)="checkSubMenu('todos')"
+          [ngClass]="{'selected-border-menu': optionSubMenu == 'todos'}">Todos</button>
+        <button mat-button [routerLink]="'/heroes/alta'" (click)="checkSubMenu('alta')"
+          [ngClass]="{'selected-border-menu': optionSubMenu == 'alta'}">Alta</button>
+      </div>
+    </mat-toolbar>
+    <!--     <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button> -->
+  </mat-drawer>
 
-<div>
-  <div class="bienvenida" *ngIf="optionSubMenu == 'home'">
-    <p>Bienvenido al sub menu</p>
+
+  <button class="togle-button" color="primary" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+
+
+  <div>
+    <div class="bienvenida" *ngIf="optionSubMenu == 'home'">
+      <p>Bienvenido al sub menu</p>
+    </div>
+    <app-listado *ngIf="optionSubMenu == 'todos'"></app-listado>
+    <app-alta *ngIf="optionSubMenu == 'alta'"></app-alta>
   </div>
-  <app-listado *ngIf="optionSubMenu == 'todos'"></app-listado>
-  <app-alta *ngIf="optionSubMenu == 'alta'"></app-alta>
-</div>
+
+  <!--   <div class="example-sidenav-content">
+  
+  </div> -->
+</mat-drawer-container>

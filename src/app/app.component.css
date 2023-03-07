@@ -16,3 +16,7 @@
   margin: auto;
   padding: 25px 0;
 }
+
+mat-toolbar {
+  height: 90px;
+}

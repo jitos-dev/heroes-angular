@@ -9,6 +9,7 @@ import { HeroeService } from 'src/app/core/services/heroe.service';
 export class HomeHeroesComponent implements OnInit {
 
   optionSubMenu!: string
+  showFiller: boolean = false
 
   constructor(private heroeService: HeroeService) { }
 

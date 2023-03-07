@@ -1,6 +1,11 @@
 mat-toolbar {
   display: flex;
   justify-content: center;
+  height: 100%;
+  width: 150px;
+  padding: 16px 0;
+  padding-top: 0;
+  align-items: baseline;
 }
 
 .mat-button {
@@ -15,3 +20,40 @@ mat-toolbar {
   border-bottom: 2px solid #ccc;
   border-radius: 0;
 }
+
+.container-sidenav {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 0;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+button.togle-button {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  padding: 18.5px;
+  background-color: #3f51b5;
+  border: 0;
+  color: #ccc;
+  margin-top: 1px;
+}
+
+/* .example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .sidenav {
+  padding: 20px;
+} */
