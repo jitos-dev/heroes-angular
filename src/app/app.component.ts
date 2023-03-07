@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { HeroeService } from './core/services/heroe.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { HeroeService } from './core/services/heroe.service';
 export class AppComponent implements OnInit {
 
   optionMenu!: string
+  clickShowTogle: boolean = false
+  eventClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -20,5 +22,13 @@ export class AppComponent implements OnInit {
     this.optionMenu = option
   }
 
+  /**Cada vez que hace click en el botón para mostrar u ocultar el sub-menu */
+  showTogle() {
+    //Cambiamos el valor de la variable para enviarla
+    this.clickShowTogle = !this.clickShowTogle
+
+    //emitimos el cambio del evento
+    this.eventClick.emit(this.clickShowTogle)
+  }
 
 }

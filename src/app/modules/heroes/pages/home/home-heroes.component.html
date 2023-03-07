@@ -10,18 +10,7 @@
           [ngClass]="{'selected-border-menu': optionSubMenu == 'alta'}">Alta</button>
       </div>
     </mat-toolbar>
-    <!--     <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button> -->
   </mat-drawer>
-
-
-  <button class="togle-button" color="primary" (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-
 
 
   <div>
@@ -32,7 +21,4 @@
     <app-alta *ngIf="optionSubMenu == 'alta'"></app-alta>
   </div>
 
-  <!--   <div class="example-sidenav-content">
-  
-  </div> -->
 </mat-drawer-container>
