@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { AppComponent } from 'src/app/app.component';
 import { HeroeService } from 'src/app/core/services/heroe.service';
+import { ShowNavService } from '../../../../core/services/show-nav.service';
 
 @Component({
   selector: 'app-home',
@@ -15,12 +15,12 @@ export class HomeHeroesComponent implements OnInit {
   //esto lo obtenemos del html. La etiqueta que queremos obtener la marcamos con #drawer
   @ViewChild('drawer') drawer!: MatDrawer
 
-  constructor(private heroeService: HeroeService, private appComponent: AppComponent) { }
+  constructor(private heroeService: HeroeService, private showNavService: ShowNavService) { }
 
   ngOnInit(): void {
     this.checkSubMenu('home')
 
-    this.appComponent.eventClick.subscribe(event => {
+    this.showNavService.eventClick.subscribe(event => {
       event == true ? this.drawer.open() : this.drawer.close()
     })
   }

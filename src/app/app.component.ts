@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { HeroeService } from './core/services/heroe.service';
+import { ShowNavService } from './core/services/show-nav.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,8 @@ export class AppComponent implements OnInit {
 
   optionMenu!: string
   clickShowTogle: boolean = false
-  eventClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private showNavService: ShowNavService) { }
 
   ngOnInit(): void {
     this.checkMenu('home')
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     this.clickShowTogle = !this.clickShowTogle
 
     //emitimos el cambio del evento
-    this.eventClick.emit(this.clickShowTogle)
+    this.showNavService.eventClick.emit(this.clickShowTogle)
   }
 
 }
