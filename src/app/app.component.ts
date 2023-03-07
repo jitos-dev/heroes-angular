@@ -10,21 +10,15 @@ export class AppComponent implements OnInit {
 
   optionMenu!: string
 
-  constructor(private heroeService: HeroeService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getData()
+    this.checkMenu('home')
   }
 
   checkMenu(option: string): void {
     this.optionMenu = option
   }
 
-  getData() {
-    this.heroeService.getAllHeroes$()
-      .subscribe(response => {
-        //esto es un array de heroes
-        console.log(response);
-      })
-  }
+
 }

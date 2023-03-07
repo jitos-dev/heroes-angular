@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroeService } from 'src/app/core/services/heroe.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private heroeService: HeroeService) { }
 
   ngOnInit(): void {
   }
 
+  getAllHeroes() {
+    this.heroeService.getAllHeroes$()
+      .subscribe(response => {
+        //esto es un array de heroes
+        console.log(response);
+      })
+  }
 }

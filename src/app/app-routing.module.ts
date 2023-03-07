@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   {
     path: 'heroes',
-    component: HomeComponent,
     loadChildren: () => import("./modules/heroes/heroes.module").then(m => m.HeroesModule)
   },
   {
