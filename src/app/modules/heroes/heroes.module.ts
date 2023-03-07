@@ -6,6 +6,8 @@ import { DetalleComponent } from './pages/detalle/detalle.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { ModalComponent } from './pages/modal/modal.component';
+import { MaterialModule } from '../material/material.module';
+import { HeroesRoutingModule } from './heroes-routing.module';
 
 
 
@@ -19,7 +21,9 @@ import { ModalComponent } from './pages/modal/modal.component';
     ModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    HeroesRoutingModule
   ]
 })
 export class HeroesModule { }
