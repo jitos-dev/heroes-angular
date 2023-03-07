@@ -10,6 +10,9 @@
 </mat-toolbar>
 
 <div>
+  <div class="bienvenida" *ngIf="optionSubMenu == 'home'">
+    <p>Bienvenido al sub menu</p>
+  </div>
   <app-listado *ngIf="optionSubMenu == 'todos'"></app-listado>
   <app-alta *ngIf="optionSubMenu == 'alta'"></app-alta>
 </div>

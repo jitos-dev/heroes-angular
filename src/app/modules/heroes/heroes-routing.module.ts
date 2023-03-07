@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeHeroesComponent } from './pages/home/home-heroes.component';
-import { ListadoComponent } from './pages/listado/pages/listado.component';
+import { ListadoComponent } from './pages/listado/listado.component';
 import { AltaComponent } from './pages/alta/alta.component';
+import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'todos',
-    loadChildren: () => import('./pages/listado/listado.module').then(m => m.ListadoModule)
+    component: ListadoComponent
   },
   {
     path: 'alta',
