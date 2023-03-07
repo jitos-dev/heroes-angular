@@ -1,1 +1,15 @@
-<p>home works!</p>
+<mat-toolbar color="primary">
+  <div>
+    <button mat-button [routerLink]="'/heroes'" (click)="checkSubMenu('home')"
+      [ngClass]="{'selected-border-menu': optionSubMenu == 'home'}">Home</button>
+    <button mat-button [routerLink]="'/heroes/todos'" (click)="checkSubMenu('todos')"
+      [ngClass]="{'selected-border-menu': optionSubMenu == 'todos'}">Todos</button>
+    <button mat-button [routerLink]="'/heroes/alta'" (click)="checkSubMenu('alta')"
+      [ngClass]="{'selected-border-menu': optionSubMenu == 'alta'}">Alta</button>
+  </div>
+</mat-toolbar>
+
+<div>
+  <app-listado *ngIf="optionSubMenu == 'todos'"></app-listado>
+  <app-alta *ngIf="optionSubMenu == 'alta'"></app-alta>
+</div>

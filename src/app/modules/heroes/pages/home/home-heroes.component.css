@@ -1,0 +1,17 @@
+mat-toolbar {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-button {
+  border-bottom: 2px solid transparent;
+}
+
+.selected-menu {
+  background-color: #ccc;
+}
+
+.selected-border-menu {
+  border-bottom: 2px solid #ccc;
+  border-radius: 0;
+}

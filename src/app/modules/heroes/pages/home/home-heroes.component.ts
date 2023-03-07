@@ -8,9 +8,12 @@ import { HeroeService } from 'src/app/core/services/heroe.service';
 })
 export class HomeHeroesComponent implements OnInit {
 
+  optionSubMenu!: string
+
   constructor(private heroeService: HeroeService) { }
 
   ngOnInit(): void {
+    this.checkSubMenu('home')
   }
 
   getAllHeroes() {
@@ -19,5 +22,9 @@ export class HomeHeroesComponent implements OnInit {
         //esto es un array de heroes
         console.log(response);
       })
+  }
+
+  checkSubMenu(option: string) {
+    this.optionSubMenu = option
   }
 }

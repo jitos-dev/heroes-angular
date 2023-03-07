@@ -1,11 +1,3 @@
-.contenido {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin: 5rem;
-}
-
 .mat-button {
   border-bottom: 2px solid transparent;
 }
