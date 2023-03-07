@@ -3,10 +3,10 @@ import { HeroeService } from 'src/app/core/services/heroe.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home-heroes.component.html',
+  styleUrls: ['./home-heroes.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeHeroesComponent implements OnInit {
 
   constructor(private heroeService: HeroeService) { }
 
