@@ -10,6 +10,7 @@ import { HeroeModel } from '../models/heroe.model';
 export class HeroeService {
 
   urlData: string = environment.urlData
+  arrHeroes: Array<HeroeModel> = []
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,4 +23,6 @@ export class HeroeService {
         })
       )
   }
+
 }
+

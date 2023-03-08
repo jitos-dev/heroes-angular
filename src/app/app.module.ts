@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TransformDataPipe } from './modules/heroes/pipes/transform-data.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TransformDataPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,7 +16,7 @@ export class AltaComponent implements OnInit {
     publisher: '',
     alter_ego: '',
     first_appearance: '',
-    characters: ''
+    characters: []
   }
 
   constructor(private formBuilder: FormBuilder) { }

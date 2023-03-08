@@ -4,7 +4,7 @@ export interface HeroeModel {
   publisher: string,
   alter_ego: string,
   first_appearance: string,
-  characters: string
+  characters: Array<string>
 }
 
 export enum Publisher {

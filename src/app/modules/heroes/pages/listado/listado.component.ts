@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { HeroeModel } from 'src/app/core/models/heroe.model';
 import { HeroeService } from 'src/app/core/services/heroe.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { TransformDataPipe } from 'src/app/modules/heroes/pipes/transform-data.pipe';
 
 @Component({
   selector: 'app-listado',
@@ -17,7 +18,9 @@ export class ListadoComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private heroeService: HeroeService) { }
+  constructor(
+    private heroeService: HeroeService,
+    private transformData: TransformDataPipe) { }
 
   ngOnInit(): void {
     this.getData()
@@ -25,8 +28,8 @@ export class ListadoComponent implements OnInit {
 
   getData() {
     this.heroeService.getAllHeroes$().subscribe(response => {
-      console.log(response);
-      this.dataSource.data = response;
+      //response es un array de HeroeModel
+      this.dataSource.data = this.transformData.transform(response);
     })
   }
 
