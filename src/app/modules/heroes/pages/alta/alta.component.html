@@ -1,35 +1,47 @@
-<form [formGroup]="superheroForm" fxLayout="column" fxLayoutAlign="center center">
+<form (ngSubmit)="sendData()" [formGroup]="superheroForm" fxLayout="column" fxLayoutAlign="center center">
 
-  <mat-form-field appearance="fill">
+  <!--   <mat-form-field appearance="fill">
     <mat-label>ID</mat-label>
     <input matInput formControlName="id">
-  </mat-form-field>
+  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Superhero</mat-label>
-    <input matInput formControlName="superhero">
+    <input matInput [formControl]="superhero" required>
+    <mat-error *ngIf="superhero.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Publisher</mat-label>
-    <input matInput formControlName="publisher">
+    <input matInput [formControl]="publisher">
+    <mat-error *ngIf="publisher.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Alter Ego</mat-label>
-    <input matInput formControlName="alter_ego">
+    <input matInput [formControl]="alter_ego">
+    <mat-error *ngIf="alter_ego.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>First Appearance</mat-label>
-    <input matInput formControlName="first_appearance">
+    <input matInput [formControl]="first_appearance">
+    <mat-error *ngIf="first_appearance.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Characters</mat-label>
-    <input matInput formControlName="characters">
+    <input matInput [formControl]="characters">
+    <mat-error *ngIf="characters.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <button mat-raised-button color="primary" type="submit">Guardar</button>
 
 </form>
+
+<!-- 
+  Si lo hacemos con formBuilder.group() solo tenemos que poner esto
+  <mat-form-field appearance="fill">
+  <mat-label>Characters</mat-label>
+  <input matInput formControlName="characters">
+</mat-form-field> -->
