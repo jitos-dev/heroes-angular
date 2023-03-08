@@ -12,11 +12,10 @@ import { TransformDataPipe } from 'src/app/modules/heroes/pipes/transform-data.p
 })
 export class ListadoComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'superhero', 'publisher', 'alter-ego', 'first-appearance'];
+  displayedColumns: string[] = ['id', 'superhero', 'publisher', 'alter-ego', 'first-appearance', 'characters'];
   dataSource: MatTableDataSource<HeroeModel> = new MatTableDataSource();
   filterDataSource!: Array<HeroeModel>
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  selectedValue!: string
 
   constructor(
     private heroeService: HeroeService,

@@ -7,10 +7,6 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TransformDataPipe implements PipeTransform {
 
-
-
-  constructor() { }
-
   transform(items: Array<any>): Array<HeroeModel> {
 
     /**Lo hago de esta forma porque lo que viene de bbdd el campo characters es un string con los nombres
