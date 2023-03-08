@@ -1,1 +1,35 @@
-<p>alta works!</p>
+<form [formGroup]="superheroForm" fxLayout="column" fxLayoutAlign="center center">
+
+  <mat-form-field appearance="fill">
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Superhero</mat-label>
+    <input matInput formControlName="superhero">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Publisher</mat-label>
+    <input matInput formControlName="publisher">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Alter Ego</mat-label>
+    <input matInput formControlName="alter_ego">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>First Appearance</mat-label>
+    <input matInput formControlName="first_appearance">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Characters</mat-label>
+    <input matInput formControlName="characters">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Guardar</button>
+
+</form>

@@ -20,6 +20,7 @@ export class HomeHeroesComponent implements OnInit {
   ngOnInit(): void {
     this.checkSubMenu('home')
 
+    //Aqui nos subscribimos al evento click del dervicio y mostramos u ocultamos el MatDrawer
     this.showNavService.eventClick.subscribe(event => {
       event == true ? this.drawer.open() : this.drawer.close()
     })

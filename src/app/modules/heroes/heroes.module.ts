@@ -8,6 +8,8 @@ import { ListadoComponent } from './pages/listado/listado.component';
 import { ModalComponent } from './pages/modal/modal.component';
 import { MaterialModule } from '../material/material.module';
 import { HeroesRoutingModule } from './heroes-routing.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +25,9 @@ import { HeroesRoutingModule } from './heroes-routing.module';
   imports: [
     CommonModule,
     MaterialModule,
-    HeroesRoutingModule
+    HeroesRoutingModule,
+    FlexLayoutModule,
+    ReactiveFormsModule
   ]
 })
 export class HeroesModule { }

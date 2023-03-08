@@ -6,3 +6,8 @@ export interface HeroeModel {
   first_appearance: string,
   characters: string
 }
+
+export enum Publisher {
+  DCComics = 'DC Comics',
+  MarvelComics = 'Marvel Comics'
+}
