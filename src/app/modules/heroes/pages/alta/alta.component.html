@@ -8,32 +8,41 @@
   <mat-form-field appearance="fill">
     <mat-label>Superhero</mat-label>
     <input matInput [formControl]="superhero" required>
-    <mat-error *ngIf="superhero.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="superhero.invalid">Este campo es obligatorio</mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <!--   <mat-form-field appearance="fill">
     <mat-label>Publisher</mat-label>
     <input matInput [formControl]="publisher">
     <mat-error *ngIf="publisher.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field> -->
+
+  <mat-form-field appearance="fill">
+    <mat-label>Selecciona una opción:</mat-label>
+    <mat-select [formControl]="publisher" required>
+      <mat-option [value]="item" *ngFor="let item of publishers">{{item}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="publisher.invalid">Este campo es obligatorio</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Alter Ego</mat-label>
     <input matInput [formControl]="alter_ego">
-    <mat-error *ngIf="alter_ego.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="alter_ego.invalid">Este campo es obligatorio</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>First Appearance</mat-label>
     <input matInput [formControl]="first_appearance">
-    <mat-error *ngIf="first_appearance.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="first_appearance.invalid">Este campo es obligatorio</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Characters</mat-label>
     <input matInput [formControl]="characters">
-    <mat-error *ngIf="characters.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="characters.invalid">Este campo es obligatorio</mat-error>
   </mat-form-field>
+
 
   <button mat-raised-button color="primary" type="submit">Guardar</button>
 
