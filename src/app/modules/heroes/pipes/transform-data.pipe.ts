@@ -28,6 +28,9 @@ export class TransformDataPipe implements PipeTransform {
       arrHeroes.push(heroe)
     })
 
+    //ordenamos el array por el campo superhero
+    arrHeroes.sort((her1, her2) => her1.superhero.localeCompare(her2.superhero))
+
     return arrHeroes;
   }
 
