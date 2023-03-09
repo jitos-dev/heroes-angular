@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeroeModel, Publisher } from '../../../../core/models/heroe.model';
+import { DataApiService } from 'src/app/core/services/data-api.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-alta',
@@ -12,7 +17,6 @@ export class AltaComponent implements OnInit {
   superheroForm: FormGroup = new FormGroup({})
 
   heroe: HeroeModel = {
-    id: '',
     superhero: '',
     publisher: Publisher.NotValue,
     alter_ego: '',
@@ -23,7 +27,11 @@ export class AltaComponent implements OnInit {
   //array con los valores del enum. Si quisieramos las claves sería Object.keys(Publisher)
   publishers = Object.values(Publisher)
 
-  constructor() { }
+  constructor(
+    private dataApi: DataApiService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog) { }
 
   superhero: FormControl = new FormControl('', [Validators.required, Validators.minLength(3)])
   publisher: FormControl = new FormControl(null, Validators.required)  //hay que pasarle los valores por defecto
@@ -58,9 +66,42 @@ export class AltaComponent implements OnInit {
 
       //recogemos los datos del formulario
       this.heroe = this.superheroForm.value
-      console.log('heroe', this.heroe);
+
+      this.dataApi.addHeroe(this.heroe).subscribe({
+        next: (response) => {
+          this.router.navigate(["/heroes"])
+          this.openSnackBar(`Superheroe ${response.superhero} añadido correctamente`)
+        },
+        error: (error) => {
+          const title: string = "Ha ocurrido un error al guardar el superheroe"
+          const body: string = JSON.stringify(error)
+          this.openDialog(title, body)
+        }
+        //si esta correcto que muestre el toolbar de que esta correcto
+      })
 
     }
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(
+      message,
+      "Aceptar",
+      {
+        duration: 3000
+      }
+    )
+  }
+
+  openDialog(title: string, body: string): void {
+    this.dialog.open(
+      DialogComponent,
+      {
+        data: {
+          title: title,
+          body: body
+        }
+      })
   }
 
 }

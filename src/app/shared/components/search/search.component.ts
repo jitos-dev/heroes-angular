@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit {
     } else if (this.fieldSearch == 'id') {
       //aplicamos un filtro a dataSource para en este caso filtrar solo por el campo superhero
       this.dataSource.filterPredicate = (data: HeroeModel, filter: string) => {
-        return data.id.trim().toLowerCase().includes(filter);
+        return data.id!.trim().toLowerCase().includes(filter);
       }
 
       //aplicamos el filtro a dataSource

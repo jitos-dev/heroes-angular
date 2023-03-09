@@ -33,7 +33,7 @@ export class DataApiService {
   }
 
   addHeroe(heroe: HeroeModel): Observable<HeroeModel> {
-    return this.http.post<HeroeModel>(`${this.urlData}heroes`, heroe);
+    return this.http.post<HeroeModel>(`${this.urlData}hero`, heroe);
   }
 
   editHeroe(heroe: HeroeModel): Observable<HeroeModel> {

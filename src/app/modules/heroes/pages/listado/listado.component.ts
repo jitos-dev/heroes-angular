@@ -20,6 +20,7 @@ export class ListadoComponent implements OnInit {
     private transformData: TransformDataPipe) { }
 
   ngOnInit(): void {
+    //llamamos a getData() para que refresque por si hay cambios
     this.getData()
   }
 
