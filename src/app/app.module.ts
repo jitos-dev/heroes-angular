@@ -8,10 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TransformDataPipe } from './modules/heroes/pipes/transform-data.pipe';
+import { ErrorComponent } from './shared/error/error.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
