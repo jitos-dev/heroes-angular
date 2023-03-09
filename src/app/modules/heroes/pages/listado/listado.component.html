@@ -1,6 +1,19 @@
 <main>
   <h2>Campos de busqueda para la tabla</h2>
   <div class="busqueda">
+    <span *ngFor="let search of fieldsSearch">
+      <app-search [dataSource]="dataSource" [fieldSearch]="search"></app-search>
+    </span>
+
+    <!--     <app-search [dataSource]="dataSource" [fieldSearch]="fieldsSearch[0]"></app-search>
+    <app-search [dataSource]="dataSource" [fieldSearch]="fieldsSearch[1]"></app-search>
+    <app-search [dataSource]="dataSource" [fieldSearch]="fieldsSearch[2]"></app-search> -->
+
+
+    <!-- 
+    <app-search [dataSource]="dataSource" [fieldSearch]="fieldsSearch[1]"></app-search>
+    <app-search [dataSource]="dataSource" [fieldSearch]="fieldsSearch[2]"></app-search>
+
     <mat-form-field>
       <mat-label>Search by id</mat-label>
       <input matInput (keyup)="searchBy($event, 'id')" placeholder="Search by id" #input>
@@ -13,8 +26,8 @@
 
     <mat-form-field>
       <mat-label>Search by any field</mat-label>
-      <input matInput (keyup)="searchBy($event, '')" placeholder="Search by any field" #input>
-    </mat-form-field>
+      <input matInput (keyup)="searchBy($event, 'any')" placeholder="Search by any field" #input>
+    </mat-form-field> -->
   </div>
 
 

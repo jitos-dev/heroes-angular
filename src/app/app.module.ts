@@ -9,6 +9,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TransformDataPipe } from './modules/heroes/pipes/transform-data.pipe';
 import { ErrorComponent } from './shared/components/error/error.component';
+import { SearchComponent } from './shared/components/search/search.component';
 
 @NgModule({
   declarations: [

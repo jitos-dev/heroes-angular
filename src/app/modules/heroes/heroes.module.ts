@@ -10,6 +10,7 @@ import { MaterialModule } from '../material/material.module';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from 'src/app/shared/components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DetalleComponent,
     HomeHeroesComponent,
     ListadoComponent,
-    ModalComponent
+    ModalComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

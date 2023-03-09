@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { HeroeService } from './core/services/heroe.service';
-import { ShowNavService } from './core/services/show-nav.service';
+import { ShowNavService } from './shared/services/show-nav.service';
 
 @Component({
   selector: 'app-root',

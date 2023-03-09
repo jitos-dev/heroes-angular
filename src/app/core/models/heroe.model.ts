@@ -12,3 +12,9 @@ export enum Publisher {
   MarvelComics = 'Marvel Comics',
   NotValue = 'Not Value'
 }
+
+export enum FilterValue {
+  id = 'id',
+  superhero = 'superhero',
+  any_field = 'any field'
+}
