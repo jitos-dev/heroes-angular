@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ShowNavService } from '../../../../shared/services/show-nav.service';
-import { HeroeService } from 'src/app/core/services/heroe.service';
+import { DataApiService } from 'src/app/core/services/data-api.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,9 @@ export class HomeHeroesComponent implements OnInit {
   //esto lo obtenemos del html. La etiqueta que queremos obtener la marcamos con #drawer
   @ViewChild('drawer') drawer!: MatDrawer
 
-  constructor(private heroeService: HeroeService, private showNavService: ShowNavService) { }
+  constructor(
+    private dataApi: DataApiService,
+    private showNavService: ShowNavService) { }
 
   ngOnInit(): void {
     this.checkSubMenu('home')
@@ -27,7 +29,7 @@ export class HomeHeroesComponent implements OnInit {
   }
 
   getAllHeroes() {
-    this.heroeService.getAllHeroes$()
+    this.dataApi.getAllHeroes$()
       .subscribe(response => {
         //esto es un array de heroes
         console.log(response);

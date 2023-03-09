@@ -7,7 +7,7 @@ import { HeroeModel } from '../models/heroe.model';
 @Injectable({
   providedIn: 'root'
 })
-export class HeroeService {
+export class DataApiService {
 
   urlData: string = environment.urlData
   arrHeroes: Array<HeroeModel> = []

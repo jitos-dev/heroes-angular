@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FilterValue, HeroeModel } from 'src/app/core/models/heroe.model';
 import { TransformDataPipe } from 'src/app/modules/heroes/pipes/transform-data.pipe';
-import { HeroeService } from 'src/app/core/services/heroe.service';
+import { DataApiService } from 'src/app/core/services/data-api.service';
 
 @Component({
   selector: 'app-listado',
@@ -16,7 +16,7 @@ export class ListadoComponent implements OnInit {
   fieldsSearch = Object.values(FilterValue)
 
   constructor(
-    private heroeService: HeroeService,
+    private dataApi: DataApiService,
     private transformData: TransformDataPipe) { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class ListadoComponent implements OnInit {
   }
 
   getData() {
-    this.heroeService.getAllHeroes$().subscribe(response => {
+    this.dataApi.getAllHeroes$().subscribe(response => {
       //response es un array de HeroeModel
       this.dataSource.data = this.transformData.transform(response);
     })
