@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FilterValue, HeroeModel } from 'src/app/core/models/heroe.model';
 import { TransformDataPipe } from 'src/app/modules/heroes/pipes/transform-data.pipe';
@@ -52,7 +52,7 @@ export class ListadoComponent implements OnInit {
   }
 
   deleteHeroe(event: Event, idHeroe: string): void {
-    this.openDialog(`Va a eliminar el heroe ${idHeroe}`, "¿Estas seguro?")
+    this.openDialog(`Va a eliminar el heroe ${idHeroe}`, "¿Estas seguro?", true)
 
     //asignamos el valor del id del heroe que quiere eliminar
     this.idHero = idHeroe
@@ -70,54 +70,23 @@ export class ListadoComponent implements OnInit {
             this.getData()
           }),
           error: (err => {
-
+            this.openDialog("Upss un herror ha ocurrido", JSON.stringify(err), false)
           })
         })
       }
     })
   }
 
-  openDialog(title: string, body: string): void {
+  openDialog(title: string, body: string, pageDelete: boolean): void {
     this.dialog.open(
       DialogComponent,
       {
         data: {
           title: title,
-          body: body
+          body: body,
+          pageDelete: pageDelete
         }
       })
   }
-
-  /*   searchBy(event: Event, field: string) {
-  
-      //palabra por la que queremos filtrar que la recogemos del imput del html
-      const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-  
-      //si quiere filtrar por superhero
-      if (field == 'superhero') {
-        //aplicamos un filtro a dataSource para en este caso filtrar solo por el campo superhero
-        this.dataSource.filterPredicate = (data: HeroeModel, filter: string) => {
-          return data.superhero.trim().toLowerCase().includes(filter);
-        }
-  
-        //aplicamos el filtro a dataSource
-        //this.dataSource.filter = filterValue
-  
-        //si quiere filtrar por id
-      } else if (field == 'id') {
-        //aplicamos un filtro a dataSource para en este caso filtrar solo por el campo superhero
-        this.dataSource.filterPredicate = (data: HeroeModel, filter: string) => {
-          return data.id.trim().toLowerCase().includes(filter);
-        }
-  
-        //aplicamos el filtro a dataSource
-        //this.dataSource.filter = filterValue
-  
-  
-        //si no filtramos por todos los campos
-      } else {
-        this.dataSource.filter = filterValue.trim().toLowerCase()
-      }
-    } */
 
 }

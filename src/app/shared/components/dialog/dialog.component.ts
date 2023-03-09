@@ -9,9 +9,6 @@ import { EmitterService } from '../../services/emitters.service';
 })
 export class DialogComponent implements OnInit {
 
-  //para emitir el evento click del botón
-  clicked: EventEmitter<boolean> = new EventEmitter<boolean>()
-
   constructor(
     private dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -19,6 +16,7 @@ export class DialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
 
   //cuando pulsa en eliminar

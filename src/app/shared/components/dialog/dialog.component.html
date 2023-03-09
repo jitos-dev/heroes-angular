@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>{{data.body}}</div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close (click)="btnEliminar()">Eliminar</button>
+  <button mat-button mat-dialog-close (click)="btnEliminar()" *ngIf="data.pageDelete">Eliminar</button>
   <button mat-button mat-dialog-close>Cerrar</button>
 </div>
