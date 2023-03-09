@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeroeModel, Publisher } from '../../../../core/models/heroe.model';
 import { DataApiService } from 'src/app/core/services/data-api.service';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
+import { ListadoComponent } from '../listado/listado.component';
 
 @Component({
   selector: 'app-alta',
@@ -14,8 +15,10 @@ import { DialogComponent } from 'src/app/shared/components/dialog/dialog.compone
 })
 export class AltaComponent implements OnInit {
 
-  superheroForm: FormGroup = new FormGroup({})
+  isChargeComponent: boolean = false
+  component!: ComponentRef<ListadoComponent>
 
+  superheroForm: FormGroup = new FormGroup({})
   heroe: HeroeModel = {
     superhero: '',
     publisher: Publisher.NotValue,
@@ -31,7 +34,9 @@ export class AltaComponent implements OnInit {
     private dataApi: DataApiService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private viewContainerRef: ViewContainerRef) { }
 
   superhero: FormControl = new FormControl('', [Validators.required, Validators.minLength(3)])
   publisher: FormControl = new FormControl(null, Validators.required)  //hay que pasarle los valores por defecto
@@ -74,6 +79,9 @@ export class AltaComponent implements OnInit {
           //reseteamos los valores del formulario
           this.resetValuesForm()
 
+          //recargamos de nuevo la lista de heroes
+          this.loadListHeroes()
+
         },
         error: (error) => {
           const title: string = "Ha ocurrido un error al guardar el superheroe"
@@ -84,6 +92,19 @@ export class AltaComponent implements OnInit {
       })
 
     }
+  }
+
+  /**Este método recarga la lista de heroes debajo del formulario refrescándose cada vez que introducimos uno */
+  loadListHeroes() {
+
+    //si ya está inicializado lo destruimos para que se recarguen los nuevos datos
+    if (this.component) {
+      this.component!.destroy()
+    }
+
+    //componente del Listado
+    const listadoComponent: ComponentFactory<ListadoComponent> = this.componentFactoryResolver.resolveComponentFactory(ListadoComponent);
+    this.component = this.viewContainerRef.createComponent(listadoComponent);
   }
 
   openSnackBar(message: string): void {
