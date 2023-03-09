@@ -30,3 +30,11 @@ table td {
   width: 100%;
   margin: 3rem;
 }
+
+.btn-delete {
+  background-color: rgb(219, 38, 38);
+}
+
+.btn-edit {
+  background-color: rgb(132, 196, 6);
+}

@@ -12,9 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ListadoComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'superhero', 'publisher', 'alter-ego', 'first-appearance', 'characters'];
+  displayedColumns: string[] = ['id', 'superhero', 'publisher', 'alter-ego', 'first-appearance', 'characters', 'editar', 'borrar'];
   dataSource: MatTableDataSource<HeroeModel> = new MatTableDataSource();
   fieldsSearch = Object.values(FilterValue)
+  isPageAlta: boolean = false
 
   constructor(
     private dataApi: DataApiService,
@@ -25,10 +26,9 @@ export class ListadoComponent implements OnInit {
   ngOnInit(): void {
     //llamamos a getData() para que refresque por si hay cambios
     this.getData()
-    /*     
-        if (this.router.url.includes("heroes")) {
-    
-        } */
+
+    //si se carga cuando cargamos la lista debajos del formulario de nuevo heroe
+    //this.isPageAlta = (this.router.url.includes("alta")) ? true : false
   }
 
   getData() {
@@ -38,6 +38,13 @@ export class ListadoComponent implements OnInit {
     })
   }
 
+  editHeroe(event: Event, idHeroe: string) {
+    console.log('editando', idHeroe);
+  }
+
+  deleteHeroe(event: Event, idHeroe: string) {
+    console.log('borrando', idHeroe);
+  }
 
   /*   searchBy(event: Event, field: string) {
   
