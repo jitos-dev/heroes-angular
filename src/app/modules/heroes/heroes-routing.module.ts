@@ -8,20 +8,23 @@ import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeHeroesComponent
-  },
-  {
-    path: 'todos',
-    component: ListadoComponent
-  },
-  {
-    path: 'alta',
-    component: AltaComponent
-  },
-  {
-    path: '**',
-    redirectTo: ''
+    component: HomeHeroesComponent,
+    children: [
+      {
+        path: 'todos',
+        component: ListadoComponent
+      },
+      {
+        path: 'alta',
+        component: AltaComponent
+      },
+      {
+        path: '**',
+        redirectTo: ''
+      }
+    ]
   }
+
 ]
 
 

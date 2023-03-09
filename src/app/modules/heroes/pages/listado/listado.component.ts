@@ -48,7 +48,6 @@ export class ListadoComponent implements OnInit {
 
   editHeroe(event: Event, idHeroe: string) {
     console.log('editando', idHeroe);
-    this.router.navigateByUrl('http://localhost:4200/heroes/alta')
   }
 
   deleteHeroe(event: Event, idHeroe: string): void {

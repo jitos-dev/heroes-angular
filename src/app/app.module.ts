@@ -11,6 +11,7 @@ import { TransformDataPipe } from './modules/heroes/pipes/transform-data.pipe';
 import { ErrorComponent } from './shared/components/error/error.component';
 import { SearchComponent } from './shared/components/search/search.component';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
+import { AltaComponent } from './modules/heroes/pages/alta/alta.component';
 
 @NgModule({
   declarations: [
