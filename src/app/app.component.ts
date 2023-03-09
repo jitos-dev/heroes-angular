@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { ShowNavService } from './shared/services/show-nav.service';
+import { EmitterService } from './shared/services/emitters.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   optionMenu!: string
   clickShowTogle: boolean = false
 
-  constructor(private showNavService: ShowNavService) { }
+  constructor(private showNavService: EmitterService) { }
 
   ngOnInit(): void {
     this.checkMenu('home')

@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { ShowNavService } from '../../../../shared/services/show-nav.service';
+import { EmitterService } from '../../../../shared/services/emitters.service';
 import { DataApiService } from 'src/app/core/services/data-api.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class HomeHeroesComponent implements OnInit {
 
   constructor(
     private dataApi: DataApiService,
-    private showNavService: ShowNavService) { }
+    private showNavService: EmitterService) { }
 
   ngOnInit(): void {
     this.checkSubMenu('home')
