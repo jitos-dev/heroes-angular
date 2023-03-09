@@ -69,8 +69,11 @@ export class AltaComponent implements OnInit {
 
       this.dataApi.addHeroe(this.heroe).subscribe({
         next: (response) => {
-          this.router.navigate(["/heroes"])
           this.openSnackBar(`Superheroe ${response.superhero} añadido correctamente`)
+
+          //reseteamos los valores del formulario
+          this.resetValuesForm()
+
         },
         error: (error) => {
           const title: string = "Ha ocurrido un error al guardar el superheroe"
@@ -102,6 +105,16 @@ export class AltaComponent implements OnInit {
           body: body
         }
       })
+  }
+
+  resetValuesForm(): void {
+    this.superheroForm.reset()
+
+    //para quitar los errores de los FormControl al hacer reset()
+    for (const controlName in this.superheroForm.controls) {
+      const control = this.superheroForm.controls[controlName];
+      control.setErrors(null);
+    }
   }
 
 }

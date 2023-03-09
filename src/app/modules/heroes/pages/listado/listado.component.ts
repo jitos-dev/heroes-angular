@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FilterValue, HeroeModel } from 'src/app/core/models/heroe.model';
 import { TransformDataPipe } from 'src/app/modules/heroes/pipes/transform-data.pipe';
 import { DataApiService } from 'src/app/core/services/data-api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
@@ -17,11 +18,17 @@ export class ListadoComponent implements OnInit {
 
   constructor(
     private dataApi: DataApiService,
-    private transformData: TransformDataPipe) { }
+    private transformData: TransformDataPipe,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     //llamamos a getData() para que refresque por si hay cambios
     this.getData()
+    /*     
+        if (this.router.url.includes("heroes")) {
+    
+        } */
   }
 
   getData() {
