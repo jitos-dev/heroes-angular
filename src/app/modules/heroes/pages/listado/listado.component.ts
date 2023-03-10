@@ -47,11 +47,11 @@ export class ListadoComponent implements OnInit {
   }
 
   editHeroe(event: Event, idHeroe: string) {
-    console.log('editando', idHeroe);
+    this.openDialog("Editando", `Va a editar el heroe ${idHeroe}`, false, true)
   }
 
   deleteHeroe(event: Event, idHeroe: string): void {
-    this.openDialog(`Va a eliminar el heroe ${idHeroe}`, "¿Estas seguro?", true)
+    this.openDialog(`Va a eliminar el heroe ${idHeroe}`, "¿Estas seguro?", true, false)
 
     //asignamos el valor del id del heroe que quiere eliminar
     this.idHero = idHeroe
@@ -69,21 +69,22 @@ export class ListadoComponent implements OnInit {
             this.getData()
           }),
           error: (err => {
-            this.openDialog("Upss un herror ha ocurrido", JSON.stringify(err), false)
+            this.openDialog("Upss un herror ha ocurrido", JSON.stringify(err), false, false)
           })
         })
       }
     })
   }
 
-  openDialog(title: string, body: string, pageDelete: boolean): void {
+  openDialog(title: string, body: string, pageDelete: boolean, edit: boolean): void {
     this.dialog.open(
       DialogComponent,
       {
         data: {
           title: title,
           body: body,
-          pageDelete: pageDelete
+          pageDelete: pageDelete,
+          edit: edit
         }
       })
   }

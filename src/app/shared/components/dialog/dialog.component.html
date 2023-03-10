@@ -1,9 +1,22 @@
-<h1 mat-dialog-title>{{data.title}}</h1>
-<div mat-dialog-content>{{data.body}}</div>
-<div mat-dialog-actions>
-  <div *ngIf="data.edit">
-    <!--     <app-alta></app-alta> -->
+<div *ngIf="!data.edit">
+  <h1 mat-dialog-title>{{data.title}}</h1>
+  <div mat-dialog-content>{{data.body}}</div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="btnEliminar()" *ngIf="data.pageDelete">Eliminar</button>
+    <button mat-button mat-dialog-close>Cerrar</button>
   </div>
-  <button mat-button mat-dialog-close (click)="btnEliminar()" *ngIf="data.pageDelete">Eliminar</button>
-  <button mat-button mat-dialog-close>Cerrar</button>
+</div>
+
+<div *ngIf="data.edit">
+
+  <div class="form-edit">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <div mat-dialog-content>{{data.body}}</div>
+    <app-alta></app-alta>
+  </div>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  </mat-dialog-actions>
 </div>

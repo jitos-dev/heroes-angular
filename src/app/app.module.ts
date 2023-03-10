@@ -5,19 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './modules/material/material.module';
+import { MaterialModule } from './shared/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TransformDataPipe } from './modules/heroes/pipes/transform-data.pipe';
 import { ErrorComponent } from './shared/components/error/error.component';
-import { SearchComponent } from './shared/components/search/search.component';
-import { DialogComponent } from './shared/components/dialog/dialog.component';
-import { AltaComponent } from './modules/heroes/pages/alta/alta.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
-    DialogComponent
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +23,9 @@ import { AltaComponent } from './modules/heroes/pages/alta/alta.component';
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule
+  ],
+  exports: [
+    ErrorComponent
   ],
   providers: [TransformDataPipe],
   bootstrap: [AppComponent]
