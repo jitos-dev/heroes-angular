@@ -16,7 +16,6 @@ import { EmitterService } from 'src/app/shared/services/emitters.service';
 })
 export class AltaComponent implements OnInit {
 
-  isChargeComponent: boolean = false
   component!: ComponentRef<ListadoComponent>
 
   superheroForm: FormGroup = new FormGroup({})
@@ -54,22 +53,16 @@ export class AltaComponent implements OnInit {
   ngOnInit(): void {
     this.editHeroe()
 
+    this.addControls()
+  }
+
+  addControls(): void {
     //añadimos los FormControl al FormGroup para que recoja los errores y podamos validarlo más facil
     this.superheroForm.addControl('superhero', this.superhero)
     this.superheroForm.addControl('publisher', this.publisher)
     this.superheroForm.addControl('alter_ego', this.alter_ego)
     this.superheroForm.addControl('first_appearance', this.first_appearance)
     this.superheroForm.addControl('characters', this.characters)
-
-    //de esta forma lo hacemos para editar
-    /*     this.superheroForm = this.fb.group({
-      id: ['dc-batman'],
-      superhero: ['Batman'],
-      publisher: ['DC Comics'],
-      alter_ego: ['Bruce Wayne'],
-      first_appearance: ['Detective Comics #27'],
-      characters: ['Bruce Wayne']
-    }); */
   }
 
   //Cuando se pulsa en enviar el formulario
@@ -93,20 +86,24 @@ export class AltaComponent implements OnInit {
           next: (heroe) => {
             this.openSnackBar(`Superheroe ${heroe.superhero} modificado correctamente`)
 
-            this.dataApi.getAllHeroes$().subscribe((list) => {
-              this.emitterService.editHeroeEmitter.emit(list)
-            })
+            //refrescamos los datos del listado para que aparezca modificado
+            this.reloadDataSource()
 
+            this.dialog.closeAll()
           },
           error: (error) => {
-
+            this.openDialog("Error al editar", JSON.stringify(error))
           }
         })
+
+      //ponemos el valor de id a undefined por si luego borra que no tenga valor predefinido
+      this.heroe.id = undefined
 
       return; //no seguimos para que no lo guarde también
     }
 
 
+    //aqui entra cuando lo que quiere es añadir un nuevo heroe
     this.dataApi.addHeroe(this.heroe).subscribe({
       next: (response) => {
         this.openSnackBar(`Superheroe ${response.superhero} añadido correctamente`)
@@ -125,8 +122,14 @@ export class AltaComponent implements OnInit {
       }
       //si esta correcto que muestre el toolbar de que esta correcto
     })
+  }
 
 
+  //para refrescar los datos del listado de heroes cuando hay algún cambio como editar o borrar un heroe
+  reloadDataSource(): void {
+    this.dataApi.getAllHeroes$().subscribe((list) => {
+      this.emitterService.dataSourceEmitter.emit(list)
+    })
   }
 
   editHeroe(): void {
@@ -158,16 +161,17 @@ export class AltaComponent implements OnInit {
 
   /**Este método recarga la lista de heroes debajo del formulario refrescándose cada vez que introducimos uno */
   loadListHeroes() {
-
-    //si ya está inicializado lo destruimos para que se recarguen los nuevos datos
+    //si ya está inicializado solo recargamos los nuevos datos
     if (this.component) {
-      this.component!.destroy()
+      this.reloadDataSource()
+      return;
     }
 
     //componente del Listado
     const listadoComponent: ComponentFactory<ListadoComponent> = this.componentFactoryResolver.resolveComponentFactory(ListadoComponent);
     this.component = this.viewContainerRef.createComponent(listadoComponent);
   }
+
 
   openSnackBar(message: string): void {
     this.snackBar.open(
@@ -198,6 +202,7 @@ export class AltaComponent implements OnInit {
       const control = this.superheroForm.controls[controlName];
       control.setErrors(null);
     }
+
   }
 
 }

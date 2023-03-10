@@ -1,21 +1,10 @@
 <form (ngSubmit)="sendData()" [formGroup]="superheroForm" fxLayout="column" fxLayoutAlign="center center">
 
-  <!--   <mat-form-field appearance="fill">
-    <mat-label>ID</mat-label>
-    <input matInput formControlName="id">
-  </mat-form-field> -->
-
   <mat-form-field appearance="fill">
     <mat-label>Superhero</mat-label>
     <input matInput [formControl]="superhero" required>
     <mat-error *ngIf="superhero.invalid">Este campo es obligatorio</mat-error>
   </mat-form-field>
-
-  <!--   <mat-form-field appearance="fill">
-    <mat-label>Publisher</mat-label>
-    <input matInput [formControl]="publisher">
-    <mat-error *ngIf="publisher.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>Selecciona una opción:</mat-label>
@@ -46,10 +35,3 @@
   <button mat-raised-button color="primary" type="submit">Guardar</button>
 
 </form>
-
-<!-- 
-  Si lo hacemos con formBuilder.group() solo tenemos que poner esto
-  <mat-form-field appearance="fill">
-  <mat-label>Characters</mat-label>
-  <input matInput formControlName="characters">
-</mat-form-field> -->

@@ -35,7 +35,7 @@ export class ListadoComponent implements OnInit {
     //llamamos a getData() para que refresque por si hay cambios
     this.getData()
 
-    this.emitterService.editHeroeEmitter.subscribe(response => {
+    this.emitterService.dataSourceEmitter.subscribe(response => {
       this.dataSource.data = this.transformData.transform(response)
     })
 

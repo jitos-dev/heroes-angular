@@ -8,7 +8,7 @@ export class EmitterService {
 
   eventClick: EventEmitter<boolean> = new EventEmitter<boolean>();
   eventClickDeleteHeroe: EventEmitter<boolean> = new EventEmitter<boolean>();
-  editHeroeEmitter: EventEmitter<Array<HeroeModel>> = new EventEmitter();
+  dataSourceEmitter: EventEmitter<Array<HeroeModel>> = new EventEmitter();
 
   constructor() { }
 }
