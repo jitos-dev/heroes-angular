@@ -12,11 +12,10 @@
   <div class="form-edit">
     <h1 mat-dialog-title>{{data.title}}</h1>
     <div mat-dialog-content>{{data.body}}</div>
-    <app-alta></app-alta>
+    <app-alta [idHeroe]="data.idHeroe"></app-alta>
   </div>
 
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+    <button mat-button mat-dialog-close>Cancelar</button>
   </mat-dialog-actions>
 </div>

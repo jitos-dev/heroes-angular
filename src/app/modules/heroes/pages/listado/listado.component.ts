@@ -19,7 +19,8 @@ export class ListadoComponent implements OnInit {
   dataSource: MatTableDataSource<HeroeModel> = new MatTableDataSource();
   fieldsSearch = Object.values(FilterValue)
   isPageAlta: boolean = false
-  idHero!: string
+
+  @Input() idHeroe!: string
 
   constructor(
     private dataApi: DataApiService,
@@ -34,6 +35,10 @@ export class ListadoComponent implements OnInit {
     //llamamos a getData() para que refresque por si hay cambios
     this.getData()
 
+    this.emitterService.editHeroeEmitter.subscribe(response => {
+      this.dataSource.data = this.transformData.transform(response)
+    })
+
     this.emitterDeleteHeroe()
     //si se carga cuando cargamos la lista debajos del formulario de nuevo heroe
     //this.isPageAlta = (this.router.url.includes("alta")) ? true : false
@@ -47,6 +52,10 @@ export class ListadoComponent implements OnInit {
   }
 
   editHeroe(event: Event, idHeroe: string) {
+    //asignamos el valor del id del heroe que quiere editar
+    this.idHeroe = idHeroe
+
+    //abrimos el Dialog en modo editar
     this.openDialog("Editando", `Va a editar el heroe ${idHeroe}`, false, true)
   }
 
@@ -54,7 +63,7 @@ export class ListadoComponent implements OnInit {
     this.openDialog(`Va a eliminar el heroe ${idHeroe}`, "¿Estas seguro?", true, false)
 
     //asignamos el valor del id del heroe que quiere eliminar
-    this.idHero = idHeroe
+    this.idHeroe = idHeroe
   }
 
   emitterDeleteHeroe(): void {
@@ -63,7 +72,7 @@ export class ListadoComponent implements OnInit {
 
       //si ha pulsado en eliminar response es true
       if (response) {
-        this.dataApi.deleteHeroe(this.idHero).subscribe({
+        this.dataApi.deleteHeroe(this.idHeroe).subscribe({
           next: (resp => {
             //volvemos a cargar los datos para que estén actualizados con el elemento borrado
             this.getData()
@@ -84,7 +93,8 @@ export class ListadoComponent implements OnInit {
           title: title,
           body: body,
           pageDelete: pageDelete,
-          edit: edit
+          edit: edit,
+          idHeroe: this.idHeroe
         }
       })
   }

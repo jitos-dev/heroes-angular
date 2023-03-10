@@ -1,4 +1,4 @@
-import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeroeModel, Publisher } from '../../../../core/models/heroe.model';
 import { DataApiService } from 'src/app/core/services/data-api.service';
@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { ListadoComponent } from '../listado/listado.component';
+import { EmitterService } from 'src/app/shared/services/emitters.service';
 
 @Component({
   selector: 'app-alta',
@@ -30,13 +31,19 @@ export class AltaComponent implements OnInit {
   //array con los valores del enum. Si quisieramos las claves sería Object.keys(Publisher)
   publishers = Object.values(Publisher)
 
+  /**Esta variable viene de dialog.component.html que se la paso desde listado.component.ts porque
+   * es desde este componente cuando pincha en editar y cuando recojo el valor se lo paso en la etiqueta.
+   */
+  @Input() idHeroe!: string
+
   constructor(
     private dataApi: DataApiService,
     private router: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private viewContainerRef: ViewContainerRef) { }
+    private viewContainerRef: ViewContainerRef,
+    private emitterService: EmitterService) { }
 
   superhero: FormControl = new FormControl('', [Validators.required, Validators.minLength(3)])
   publisher: FormControl = new FormControl(null, Validators.required)  //hay que pasarle los valores por defecto
@@ -45,6 +52,7 @@ export class AltaComponent implements OnInit {
   characters: FormControl = new FormControl('', [Validators.required, Validators.minLength(3)])
 
   ngOnInit(): void {
+    this.editHeroe()
 
     //añadimos los FormControl al FormGroup para que recoja los errores y podamos validarlo más facil
     this.superheroForm.addControl('superhero', this.superhero)
@@ -66,30 +74,84 @@ export class AltaComponent implements OnInit {
 
   //Cuando se pulsa en enviar el formulario
   sendData() {
-    //si esta todo correcto lo guardamos
-    if (this.superheroForm.valid) {
+    //si el formulario tiene errores
+    if (!this.superheroForm.valid) {
+      return;
+    }
 
-      //recogemos los datos del formulario
-      this.heroe = this.superheroForm.value
+    //recogemos los datos del formulario
+    this.heroe = this.superheroForm.value
 
-      this.dataApi.addHeroe(this.heroe).subscribe({
-        next: (response) => {
-          this.openSnackBar(`Superheroe ${response.superhero} añadido correctamente`)
+    /**Si idHero tiene valor es porque viene de editar */
+    if (this.idHeroe) {
 
-          //reseteamos los valores del formulario
-          this.resetValuesForm()
+      //le asignamos el id y lo modificamos
+      this.heroe.id = this.idHeroe
 
-          //recargamos de nuevo la lista de heroes
-          this.loadListHeroes()
+      this.dataApi.editHeroe(this.heroe)
+        .subscribe({
+          next: (heroe) => {
+            this.openSnackBar(`Superheroe ${heroe.superhero} modificado correctamente`)
+
+            this.dataApi.getAllHeroes$().subscribe((list) => {
+              this.emitterService.editHeroeEmitter.emit(list)
+            })
+
+          },
+          error: (error) => {
+
+          }
+        })
+
+      return; //no seguimos para que no lo guarde también
+    }
+
+
+    this.dataApi.addHeroe(this.heroe).subscribe({
+      next: (response) => {
+        this.openSnackBar(`Superheroe ${response.superhero} añadido correctamente`)
+
+        //reseteamos los valores del formulario
+        this.resetValuesForm()
+
+        //recargamos de nuevo la lista de heroes
+        this.loadListHeroes()
+
+      },
+      error: (error) => {
+        const title: string = "Ha ocurrido un error al guardar el superheroe"
+        const body: string = JSON.stringify(error)
+        this.openDialog(title, body)
+      }
+      //si esta correcto que muestre el toolbar de que esta correcto
+    })
+
+
+  }
+
+  editHeroe(): void {
+    //solo tendrá valor si viene del formulario de editar
+    if (this.idHeroe) {
+
+      //buscamos el heroe que vamos a editar por el id
+      this.dataApi.getHeroesById(this.idHeroe).subscribe({
+        next: (heroe) => {
+          this.heroe = heroe
+          this.heroe.id = this.idHeroe
+
+          //asignamos los valores del heroe a los campos del formulario
+          this.superhero.setValue(heroe.superhero)
+          this.publisher.setValue(heroe.publisher)
+          this.alter_ego.setValue(heroe.alter_ego)
+          this.first_appearance.setValue(heroe.first_appearance)
+          this.characters.setValue(heroe.characters)
 
         },
         error: (error) => {
-          const title: string = "Ha ocurrido un error al guardar el superheroe"
-          const body: string = JSON.stringify(error)
-          this.openDialog(title, body)
+          this.openDialog("Ha ocurrido un error, el id de usuario no es válido", JSON.stringify(error))
         }
-        //si esta correcto que muestre el toolbar de que esta correcto
       })
+
 
     }
   }
