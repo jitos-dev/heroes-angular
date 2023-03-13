@@ -9,8 +9,6 @@ import { MaterialModule } from './shared/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TransformDataPipe } from './modules/heroes/pipes/transform-data.pipe';
 import { ErrorComponent } from './shared/components/error/error.component';
-import { HomeHeroesComponent } from './modules/heroes/pages/home/home-heroes.component';
-
 
 @NgModule({
   declarations: [
