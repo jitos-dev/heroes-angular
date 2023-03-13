@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { EmitterService } from './shared/services/emitters.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   optionMenu!: string
   clickShowTogle: boolean = false
 
-  constructor(private showNavService: EmitterService) { }
+  constructor(private emitterService: EmitterService) { }
 
   ngOnInit(): void {
     this.checkMenu('home')
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
     this.clickShowTogle = !this.clickShowTogle
 
     //emitimos el cambio del evento
-    this.showNavService.eventClick.emit(this.clickShowTogle)
+    this.emitterService.eventClick.emit(this.clickShowTogle)
   }
 
 }

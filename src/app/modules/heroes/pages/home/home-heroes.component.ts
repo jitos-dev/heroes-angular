@@ -17,15 +17,18 @@ export class HomeHeroesComponent implements OnInit {
 
   constructor(
     private dataApi: DataApiService,
-    private showNavService: EmitterService) { }
+    private emitterService: EmitterService) { }
 
   ngOnInit(): void {
     this.checkSubMenu('home')
 
     //Aqui nos subscribimos al evento click del dervicio y mostramos u ocultamos el MatDrawer
-    this.showNavService.eventClick.subscribe(event => {
+    this.emitterService.eventClick.subscribe(event => {
       event == true ? this.drawer.open() : this.drawer.close()
     })
+
+    //El evento cuando guardamos un Heroe en alta.component para redirigir a la lista de heroes
+    this.redirecToAll()
   }
 
   getAllHeroes() {
@@ -38,5 +41,12 @@ export class HomeHeroesComponent implements OnInit {
 
   checkSubMenu(option: string) {
     this.optionSubMenu = option
+  }
+
+  //llamo al método de este servicio que se encarga de redirigirnos a otras páginas
+  redirecToAll() {
+    this.emitterService.navigateEmitter.subscribe(() => {
+      this.checkSubMenu('todos')
+    })
   }
 }

@@ -159,6 +159,22 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "superhero": "Alfredo Super Lopez",
+      "publisher": "DC Comics",
+      "alter_ego": "Alfredo el mecanico",
+      "first_appearance": "Hombre con gafas nuevas",
+      "characters": "personaje1, personaje2",
+      "id": "81fbcrR"
+    },
+    {
+      "superhero": "Antonio",
+      "publisher": "Not Value",
+      "alter_ego": "mucho",
+      "first_appearance": "paleto",
+      "characters": "antonito",
+      "id": "9Zd4Rsx"
     }
   ]
 }

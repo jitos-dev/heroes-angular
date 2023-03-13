@@ -6,7 +6,7 @@ import { ListadoComponent } from './pages/listado/listado.component';
 import { MaterialModule } from '../../shared/material/material.module';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from 'src/app/shared/components/search/search.component';
 import { DialogComponent } from '../../shared/components/dialog/dialog.component';
 
@@ -22,8 +22,10 @@ import { DialogComponent } from '../../shared/components/dialog/dialog.component
     CommonModule,
     MaterialModule,
     HeroesRoutingModule,
+    FormsModule,
     FlexLayoutModule,
     ReactiveFormsModule
-  ]
+  ],
+  exports: [HomeHeroesComponent]
 })
 export class HeroesModule { }
