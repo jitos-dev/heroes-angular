@@ -23,7 +23,6 @@ export class SearchComponent implements OnInit {
   searchBy(event: Event) {
     //palabra por la que queremos filtrar que la recogemos del imput del html
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    console.log(filterValue, 'length: ', filterValue.length);
 
     //si quiere filtrar por superhero
     if (this.fieldSearch == 'superhero') {
@@ -48,6 +47,15 @@ export class SearchComponent implements OnInit {
 
       //si no filtramos por todos los campos
     } else {
+
+      this.dataSource.filterPredicate = (data: HeroeModel, filter: string) => {
+        return data.id!.trim().toLowerCase().includes(filter) ||
+          data.publisher.trim().toLowerCase().includes(filter) ||
+          data.superhero.trim().toLowerCase().includes(filter) ||
+          data.alter_ego.trim().toLowerCase().includes(filter) ||
+          data.first_appearance.trim().toLowerCase().includes(filter) ||
+          data.characters.join(",").trim().toLowerCase().includes(filter);
+      }
       this.dataSource.filter = filterValue
     }
   }

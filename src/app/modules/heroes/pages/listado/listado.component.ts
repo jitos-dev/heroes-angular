@@ -66,6 +66,8 @@ export class ListadoComponent implements OnInit {
     this.idHeroe = idHeroe
   }
 
+
+  //cuan quiere borrar un heroe de la lista de heroes/todos
   emitterDeleteHeroe(): void {
     //nos subscribimos por si pulsa en el botón de eliminar del dialog.component
     this.emitterService.eventClickDeleteHeroe.subscribe(response => {
@@ -84,6 +86,7 @@ export class ListadoComponent implements OnInit {
       }
     })
   }
+
 
   openDialog(title: string, body: string, pageDelete: boolean, edit: boolean): void {
     this.dialog.open(

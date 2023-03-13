@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { EmitterService } from '../../../../shared/services/emitters.service';
 import { DataApiService } from 'src/app/core/services/data-api.service';
@@ -31,20 +31,12 @@ export class HomeHeroesComponent implements OnInit {
     this.redirecToAll()
   }
 
-  getAllHeroes() {
-    this.dataApi.getAllHeroes$()
-      .subscribe(response => {
-        //esto es un array de heroes
-        console.log(response);
-      })
-  }
-
   checkSubMenu(option: string) {
     this.optionSubMenu = option
   }
 
   //llamo al método de este servicio que se encarga de redirigirnos a otras páginas
-  redirecToAll() {
+  private redirecToAll() {
     this.emitterService.navigateEmitter.subscribe(() => {
       this.checkSubMenu('todos')
     })
