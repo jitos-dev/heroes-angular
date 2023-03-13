@@ -1,0 +1,22 @@
+mat-form-field {
+  width: 25vw;
+  margin-bottom: 5vh;
+}
+
+form {
+  margin-top: 100px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.mensaje-error {
+  width: 25vw;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgb(223, 65, 65);
+  padding: 1.5rem;
+  border-radius: 10px;
+}

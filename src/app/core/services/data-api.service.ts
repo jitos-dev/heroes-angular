@@ -53,5 +53,9 @@ export class DataApiService {
       )
   }
 
+  addUser$(user: any): Observable<any> {
+    return this.http.post<HeroeModel>(`${this.urlData}usuarios`, user);
+  }
+
 }
 

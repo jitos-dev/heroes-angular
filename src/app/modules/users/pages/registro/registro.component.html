@@ -1,1 +1,36 @@
-<p>registro works!</p>
+<h1>Bienvenido a la página de Registro</h1>
+
+<!-- <div *ngIf="errorUserOrPassword" class="mensaje-error">
+  El usuario o la contraseña es incorrecta
+</div> -->
+
+<form (ngSubmit)="registro()" [formGroup]="registerGroup" fxLayout="column" fxLayoutAlign="center center">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email" required>
+    <mat-error *ngIf="registerGroup.get('email')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>User</mat-label>
+    <input matInput formControlName="usuario" required>
+    <mat-error *ngIf="registerGroup.get('usuario')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" required>
+    <mat-error *ngIf="registerGroup.get('password')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Repita password</mat-label>
+    <input matInput formControlName="password2" type="password" required>
+    <mat-error *ngIf="registerGroup.get('password2')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Enviar</button>
+
+</form>
