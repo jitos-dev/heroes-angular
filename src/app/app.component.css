@@ -27,3 +27,7 @@ mat-toolbar {
   border: 0;
   margin-right: 2em;
 }
+
+.login-group {
+  margin-left: calc(100vw - 600px);
+}

@@ -1,1 +1,24 @@
-<p>login works!</p>
+<h1>Bienvenido a la página de Login</h1>
+
+<div *ngIf="errorUserOrPassword" class="mensaje-error">
+  El usuario o la contraseña es incorrecta
+</div>
+
+<form (ngSubmit)="login()" [formGroup]="loginGroup" fxLayout="column" fxLayoutAlign="center center">
+
+  <mat-form-field appearance="fill">
+    <mat-label>User</mat-label>
+    <input matInput formControlName="user" required>
+    <mat-error *ngIf="loginGroup.get('user')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" required>
+    <mat-error *ngIf="loginGroup.get('password')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Enviar</button>
+
+</form>

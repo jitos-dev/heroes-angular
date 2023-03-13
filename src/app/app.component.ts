@@ -11,11 +11,15 @@ export class AppComponent implements OnInit {
 
   optionMenu!: string
   clickShowTogle: boolean = false
+  isLoginUser: boolean = false
 
   constructor(private emitterService: EmitterService) { }
 
   ngOnInit(): void {
     this.checkMenu('home')
+
+    //quedamos a la escucha por si ya se logueo el usuario
+    this.isUserLoginEmitter()
   }
 
   checkMenu(option: string): void {
@@ -29,6 +33,13 @@ export class AppComponent implements OnInit {
 
     //emitimos el cambio del evento
     this.emitterService.eventClick.emit(this.clickShowTogle)
+  }
+
+  //nos subscribimos para comprobar que el usuario está logueado
+  private isUserLoginEmitter(): void {
+    this.emitterService.loginEmitter.subscribe(isLogin => {
+      this.isLoginUser = isLogin
+    })
   }
 
 }

@@ -16,7 +16,7 @@ import { EmitterService } from 'src/app/shared/services/emitters.service';
 })
 export class AltaComponent implements OnInit {
 
-  component!: ComponentRef<ListadoComponent>
+  component!: ComponentRef<ListadoComponent> //ver si vale para algo esto
 
   superheroForm: FormGroup = new FormGroup({})
   heroe: HeroeModel = {
@@ -79,7 +79,6 @@ export class AltaComponent implements OnInit {
 
       return; //no seguimos para que no lo guarde también
     }
-
 
     //Si llega aqui es porque quiere es añadir un nuevo heroe
     this.saveHeroe();

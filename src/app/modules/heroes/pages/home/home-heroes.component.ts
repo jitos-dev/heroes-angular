@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { EmitterService } from '../../../../shared/services/emitters.service';
 import { DataApiService } from 'src/app/core/services/data-api.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,9 +19,18 @@ export class HomeHeroesComponent implements OnInit {
 
   constructor(
     private dataApi: DataApiService,
-    private emitterService: EmitterService) { }
+    private emitterService: EmitterService,
+    private cookieService: CookieService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    //si no existe lo cookie 'token' es que no esta logueado y volvemos a login
+    if (!this.cookieService.check('token')) {
+      this.router.navigate(['/login'])
+    }
+
+
     this.checkSubMenu('home')
 
     //Aqui nos subscribimos al evento click del dervicio y mostramos u ocultamos el MatDrawer

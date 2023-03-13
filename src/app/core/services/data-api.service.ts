@@ -44,5 +44,14 @@ export class DataApiService {
     return this.http.delete<any>(`${this.urlData}heroes/${id}`);
   }
 
+  getAllUsers$(): Observable<Array<any>> {
+    return this.http.get(`${this.urlData}usuarios`)
+      .pipe(
+        map((obj: any) => {
+          return obj
+        })
+      )
+  }
+
 }
 

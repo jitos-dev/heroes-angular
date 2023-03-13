@@ -10,6 +10,7 @@ export class EmitterService {
   eventClickDeleteHeroe: EventEmitter<boolean> = new EventEmitter<boolean>();
   dataSourceEmitter: EventEmitter<Array<HeroeModel>> = new EventEmitter();
   navigateEmitter: EventEmitter<void> = new EventEmitter<void>();
+  loginEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 }

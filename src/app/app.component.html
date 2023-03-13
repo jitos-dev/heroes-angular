@@ -9,6 +9,18 @@
       [ngClass]="{'selected-border-menu': optionMenu == 'home'}">Home</button>
     <button mat-button [routerLink]="'/heroes'" (click)="checkMenu('heroes')"
       [ngClass]="{'selected-border-menu': optionMenu == 'heroes'}">Heroes</button>
+    <button mat-button [routerLink]="'/users'" (click)="checkMenu('users')"
+      [ngClass]="{'selected-border-menu': optionMenu == 'users'}">Usuarios</button>
+  </div>
+
+  <div class="login-group">
+    <button *ngIf="!isLoginUser" mat-button [routerLink]="'/login'" (click)="checkMenu('login')"
+      [ngClass]="{'selected-border-menu': optionMenu == 'login'}">Login</button>
+    <button *ngIf="!isLoginUser" mat-button [routerLink]="'/registro'" (click)="checkMenu('registro')"
+      [ngClass]="{'selected-border-menu': optionMenu == 'registro'}">Registro</button>
+
+    <button *ngIf="isLoginUser" mat-button [routerLink]="'/registro'" (click)="checkMenu('registro')"
+      [ngClass]="{'selected-border-menu': optionMenu == 'registro'}">Logout</button>
   </div>
 </mat-toolbar>
 

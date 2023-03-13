@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
+import { EdicionComponent } from './pages/edicion/edicion.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent,
+    path: '',
+    component: EdicionComponent
   },
   {
-    path: 'registro',
-    component: LoginComponent,
-  },
-  {
-    path: 'edicion',
-    component: LoginComponent,
+    path: '**',
+    redirectTo: ''
   }
 ]
 
